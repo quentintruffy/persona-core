@@ -1,3 +1,10 @@
+on(
+	'playerConnecting',
+	(name: string, setKickReason: (reason: string) => void, deferrals: any) => {
+		console.log(`${name} est en train de se connecter Client...`);
+	}
+);
+
 on('onClientResourceStart', async (resourceName: string) => {
 	if (GetCurrentResourceName() !== resourceName) {
 		return;

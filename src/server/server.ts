@@ -1,6 +1,3 @@
-/// <reference path="../../node_modules/@citizenfx/server/natives_server.d.ts" />
-/// <reference path="../../node_modules/@citizenfx/server/index.d.ts" />
-
 on(
 	'playerConnecting',
 	(name: string, setKickReason: (reason: string) => void, deferrals: any) => {

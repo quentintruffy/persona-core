@@ -1,6 +1,4 @@
 "use strict";
-/// <reference path="../../node_modules/@citizenfx/server/natives_server.d.ts" />
-/// <reference path="../../node_modules/@citizenfx/server/index.d.ts" />
 on('playerConnecting', (name, setKickReason, deferrals) => {
     console.log(`${name} est en train de se connecter...`);
 });
