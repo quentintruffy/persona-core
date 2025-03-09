@@ -16,7 +16,7 @@
   \******************************/
 /***/ (() => {
 
-eval("\non('playerConnecting', (name, setKickReason, deferrals) => {\n    console.log(`${name} est en train de se connecter...`);\n});\non('playerDropped', (reason) => {\n    console.log(`a quitté le serveur. Raison: ${reason}`);\n});\nonNet('playerEntered', () => {\n    console.log(`est connecté sur le serveur !`);\n});\n\n\n//# sourceURL=webpack://persona-core/./src/server/server.ts?");
+eval("\non('playerConnecting', (name, setKickReason, deferrals) => {\n    console.log(`${name} est en train de se connecter...`);\n    emitNet('playerConnectedToServer', source, name);\n});\non('playerDropped', (reason) => {\n    console.log(`a quitté le serveur. Raison: ${reason}`);\n});\nonNet('playerEntered', () => {\n    console.log(`est connecté sur le serveur !`);\n});\n\n\n//# sourceURL=webpack://persona-core/./src/server/server.ts?");
 
 /***/ })
 
