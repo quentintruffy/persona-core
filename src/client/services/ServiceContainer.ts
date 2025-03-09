@@ -1,7 +1,13 @@
+import { EntityService, IEntityService } from './EntityService';
+import { IModelService, ModelService } from './ModelService';
+import { IPlayerService, PlayerService } from './PlayerService';
+import { ISpawnService, SpawnService } from './SpawnService';
+import { IUIService, UIService } from './UIService';
+
 /**
  * Conteneur simple pour l'injection de dépendances
  */
-class ServiceContainer {
+export class ServiceContainer {
 	private services: Map<string, any> = new Map();
 
 	/**

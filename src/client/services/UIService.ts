@@ -1,7 +1,7 @@
 /**
  * Interface pour un service de gestion d'interface utilisateur
  */
-interface IUIService {
+export interface IUIService {
 	fadeIn(duration: number): Promise<void>;
 	fadeOut(duration: number): Promise<void>;
 	hideLoadingScreens(): void;
@@ -10,7 +10,7 @@ interface IUIService {
 /**
  * Service pour la gestion de l'interface utilisateur
  */
-class UIService implements IUIService {
+export class UIService implements IUIService {
 	/**
 	 * Fait un fondu en entrée
 	 */

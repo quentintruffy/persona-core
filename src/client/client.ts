@@ -1,4 +1,5 @@
 import { client_services } from './services/ServiceContainer';
+import { ISpawnService } from './services/SpawnService';
 
 on('onClientResourceStart', async (resourceName: string) => {
 	if (GetCurrentResourceName() !== resourceName) {

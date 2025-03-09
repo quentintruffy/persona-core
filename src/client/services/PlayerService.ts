@@ -1,7 +1,9 @@
+import { IEntityService } from './EntityService';
+
 /**
  * Type pour les coordonnées 3D
  */
-type Vector3 = {
+export type Vector3 = {
 	x: number;
 	y: number;
 	z: number;
@@ -10,7 +12,7 @@ type Vector3 = {
 /**
  * Interface pour un service de gestion de joueur
  */
-interface IPlayerService {
+export interface IPlayerService {
 	getId(): number;
 	getPedId(): number;
 	setModel(modelHash: number): Promise<number>;
@@ -24,7 +26,7 @@ interface IPlayerService {
 /**
  * Service pour la gestion du joueur
  */
-class PlayerService implements IPlayerService {
+export class PlayerService implements IPlayerService {
 	private entityService: IEntityService;
 
 	constructor(entityService: IEntityService) {

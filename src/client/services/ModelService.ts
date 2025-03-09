@@ -1,7 +1,7 @@
 /**
  * Interface pour un service de gestion de modèles
  */
-interface IModelService {
+export interface IModelService {
 	load(modelName: string): Promise<number>;
 	release(modelHash: number): void;
 	isLoaded(modelHash: number): boolean;
@@ -10,7 +10,7 @@ interface IModelService {
 /**
  * Service pour la gestion des modèles
  */
-class ModelService implements IModelService {
+export class ModelService implements IModelService {
 	/**
 	 * Charge un modèle de façon asynchrone
 	 */

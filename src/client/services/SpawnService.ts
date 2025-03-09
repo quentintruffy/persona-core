@@ -1,7 +1,12 @@
+import { IEntityService } from './EntityService';
+import { IModelService } from './ModelService';
+import { IPlayerService, Vector3 } from './PlayerService';
+import { IUIService } from './UIService';
+
 /**
  * Interface pour la configuration de spawn
  */
-interface ISpawnConfig {
+export interface ISpawnConfig {
 	position: Vector3;
 	heading: number;
 	model: string;
@@ -13,7 +18,7 @@ interface ISpawnConfig {
 /**
  * Interface pour un service de spawn
  */
-interface ISpawnService {
+export interface ISpawnService {
 	spawn(config?: Partial<ISpawnConfig>): Promise<void>;
 	getDefaultConfig(): ISpawnConfig;
 }
@@ -21,7 +26,7 @@ interface ISpawnService {
 /**
  * Service de spawn du joueur utilisant les autres services
  */
-class SpawnService implements ISpawnService {
+export class SpawnService implements ISpawnService {
 	private modelService: IModelService;
 	private entityService: IEntityService;
 	private uiService: IUIService;

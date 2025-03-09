@@ -1,7 +1,9 @@
+import { Vector3 } from './PlayerService';
+
 /**
  * Interface pour un service de gestion d'entités
  */
-interface IEntityService {
+export interface IEntityService {
 	setPosition(entity: number, position: Vector3, heading?: number): void;
 	setVisible(entity: number, visible: boolean, networkVisible?: boolean): void;
 	freeze(entity: number, frozen: boolean): void;
@@ -10,7 +12,7 @@ interface IEntityService {
 /**
  * Service pour la gestion des entités
  */
-class EntityService implements IEntityService {
+export class EntityService implements IEntityService {
 	/**
 	 * Définit la position d'une entité
 	 */
