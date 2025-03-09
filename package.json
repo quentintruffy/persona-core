@@ -9,7 +9,7 @@
 		"build:client": "tsc -p tsconfig.client.json",
 		"build:server": "tsc -p tsconfig.server.json",
 		"build:shared": "tsc -p tsconfig.shared.json",
-		"build": "npm run clean && npm run build:client && npm run build:server && npm run build:shared"
+		"build": "tsc -p tsconfig.json"
 	},
 	"repository": {
 		"type": "git",

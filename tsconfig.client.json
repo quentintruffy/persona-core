@@ -1,8 +1,0 @@
-{
-	"extends": "./tsconfig.json",
-	"compilerOptions": {
-		"types": ["@citizenfx/client", "@types/node"]
-	},
-	"include": ["src/client/**/*.ts", "src/shared/**/*.ts"],
-	"exclude": ["node_modules", "src/server/**/*.ts"]
-}

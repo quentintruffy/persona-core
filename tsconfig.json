@@ -9,7 +9,8 @@
 		"outDir": "./dist",
 		"rootDir": "./src",
 		"skipLibCheck": true,
-		"lib": ["ES2020"]
+		"lib": ["ES2020"],
+		"types": ["@citizenfx/client", "@citizenfx/server", "@types/node"]
 	},
 	"include": ["src/**/*.ts"],
 	"exclude": ["node_modules"]
