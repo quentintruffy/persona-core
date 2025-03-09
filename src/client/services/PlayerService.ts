@@ -20,6 +20,7 @@ export interface IPlayerService {
 	resurrect(position: Vector3, heading: number): void;
 	clearTasks(): void;
 	resetCamera(): void;
+	isFullyLoaded(): boolean;
 	setupDefaultAppearance(): void;
 }
 
@@ -93,6 +94,19 @@ export class PlayerService implements IPlayerService {
 	 */
 	resetCamera(): void {
 		SetGameplayCamRelativeHeading(0);
+	}
+
+	/**
+	 * Vérifie si le joueur est entièrement chargé
+	 */
+	isFullyLoaded(): boolean {
+		return (
+			NetworkIsPlayerActive(PlayerId()) &&
+			!IsScreenFadedOut() &&
+			!IsScreenFadingOut() &&
+			!IsScreenFadingIn() &&
+			!IsPlayerSwitchInProgress()
+		);
 	}
 
 	/**
