@@ -3,7 +3,7 @@ on(
 	(name: string, setKickReason: (reason: string) => void, deferrals: any) => {
 		console.log(`${name} est en train de se connecter...`);
 
-		emitNet('playerConnectedToServer', source, name);
+		TriggerClientEvent('playerConnectedToServer', source, name);
 	}
 );
 

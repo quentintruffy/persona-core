@@ -9,17 +9,14 @@ on('onClientResourceStart', async (resourceName: string) => {
 });
 
 // Côté client
-onNet(
-	'playerConnectedToServer',
-	async (playerId: number, playerName: string) => {
-		console.log(
-			`Le joueur ${playerName} (ID: ${playerId}) s'est connecté au serveur`
-		);
-		// Actions à effectuer lorsque le joueur se connecte
-		// Récupération du service de spawn
-		const spawnService = client_services.get<ISpawnService>('spawnService');
+on('playerConnectedToServer', async (playerId: number, playerName: string) => {
+	console.log(
+		`Le joueur ${playerName} (ID: ${playerId}) s'est connecté au serveur`
+	);
+	// Actions à effectuer lorsque le joueur se connecte
+	// Récupération du service de spawn
+	const spawnService = client_services.get<ISpawnService>('spawnService');
 
-		// Spawn le joueur avec la configuration par défaut
-		await spawnService.spawn();
-	}
-);
+	// Spawn le joueur avec la configuration par défaut
+	await spawnService.spawn();
+});
