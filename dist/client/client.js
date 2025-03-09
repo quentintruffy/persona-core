@@ -34,7 +34,7 @@ const initializePlayer = async () => {
         ClearPedTasksImmediately(PlayerPedId());
         SetGameplayCamRelativeHeading(0);
         FreezeEntityPosition(ped, false);
-        SetPlayerControl(playerId, false, 0);
+        SetPlayerControl(playerId, true, 0);
         DoScreenFadeIn(500);
         SetPedDefaultComponentVariation(ped);
         SetModelAsNoLongerNeeded(modelHash);
