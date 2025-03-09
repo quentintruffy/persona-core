@@ -1,7 +1,4 @@
 "use strict";
-on('playerConnecting', (name, setKickReason, deferrals) => {
-    console.log(`${name} est en train de se connecter Client...`);
-});
 on('onClientResourceStart', async (resourceName) => {
     if (GetCurrentResourceName() !== resourceName) {
         return;
