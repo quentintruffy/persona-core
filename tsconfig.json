@@ -17,20 +17,20 @@
 // }
 
 {
-	"compilerOptions": {
-		"target": "es2016",
-		"module": "esnext",
-		"moduleResolution": "node",
-		"esModuleInterop": true,
-		"strict": true,
-		"outDir": "./dist",
-		"rootDir": "./src",
-		"sourceMap": true,
-		"declaration": false,
-		"removeComments": true,
-		"noImplicitAny": true,
-		"types": ["@citizenfx/client", "@citizenfx/server", "@types/node"]
-	},
-	"include": ["src/**/*"],
-	"exclude": ["node_modules"]
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "declaration": false,
+    "removeComments": true,
+    "noImplicitAny": true,
+    "types": ["@citizenfx/client", "@citizenfx/server", "@types/node"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "src/web/**/*"]
 }

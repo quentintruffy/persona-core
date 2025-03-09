@@ -3,17 +3,24 @@ import { client_services } from './services/ServiceContainer';
 import { ISpawnService } from './services/SpawnService';
 
 on('onClientResourceStart', async (resourceName: string) => {
-	if (GetCurrentResourceName() !== resourceName) {
-		return;
-	}
-	console.log(`onClientResourceStart: ${resourceName}`);
+  if (GetCurrentResourceName() !== resourceName) {
+    return;
+  }
+  console.log(`onClientResourceStart: ${resourceName}`);
 
-	const playerServer = client_services.get<IPlayerService>('playerService');
+  const playerServer = client_services.get<IPlayerService>('playerService');
 
-	if (!playerServer.isFullyLoaded()) return;
-	// Récupération du service de spawn
-	const spawnService = client_services.get<ISpawnService>('spawnService');
+  if (!playerServer.isFullyLoaded()) return;
+  // Récupération du service de spawn
+  const spawnService = client_services.get<ISpawnService>('spawnService');
 
-	// Spawn le joueur avec la configuration par défaut
-	await spawnService.spawn();
+  // Spawn le joueur avec la configuration par défaut
+  await spawnService.spawn();
+
+  SetNuiFocus(true, true);
+  SendNUIMessage({
+    action: 'OPEN',
+  });
+
+  console.log('onClientResourceStart: FINISHED');
 });

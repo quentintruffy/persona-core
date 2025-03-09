@@ -1,35 +1,33 @@
 {
-	"name": "persona-core",
-	"description": "",
-	"version": "1.0.0",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"clean": "rm -rf dist",
-		"build:client": "tsc -p tsconfig.client.json",
-		"build:server": "tsc -p tsconfig.server.json",
-		"build:shared": "tsc -p tsconfig.shared.json",
-		"build": "tsc -p tsconfig.json",
-		"build:dev": "webpack --mode development"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/quentintruffy/persona-core.git"
-	},
-	"keywords": [],
-	"author": "QuentinTruffy",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/quentintruffy/persona-core/issues"
-	},
-	"homepage": "https://github.com/quentintruffy/persona-core#readme",
-	"devDependencies": {
-		"@citizenfx/client": "2.0.13185-1",
-		"@citizenfx/server": "2.0.13227-1",
-		"@types/node": "^22.13.10",
-		"ts-loader": "^9.5.2",
-		"typescript": "^5.8.2",
-		"webpack": "^5.98.0",
-		"webpack-cli": "^6.0.1"
-	}
+  "name": "persona-core",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf dist",
+    "build:dev:watch": "webpack --mode development --watch",
+    "build:web:watch": "cd src/web && pnpm build --watch",
+    "dev": "start npm run build:dev:watch && start npm run build:web:watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quentintruffy/persona-core.git"
+  },
+  "keywords": [],
+  "author": "QuentinTruffy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/quentintruffy/persona-core/issues"
+  },
+  "homepage": "https://github.com/quentintruffy/persona-core#readme",
+  "devDependencies": {
+    "@citizenfx/client": "2.0.13185-1",
+    "@citizenfx/server": "2.0.13227-1",
+    "@types/node": "^22.13.10",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.2",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
+  }
 }

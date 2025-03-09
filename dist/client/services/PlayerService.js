@@ -1,62 +1,51 @@
-"use strict";
-/**
- * Service pour la gestion du joueur
- */
-class PlayerService {
-    entityService;
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+export class PlayerService {
     constructor(entityService) {
         this.entityService = entityService;
     }
-    /**
-     * Récupère l'ID du joueur
-     */
     getId() {
         return PlayerId();
     }
-    /**
-     * Récupère l'ID du ped du joueur
-     */
     getPedId() {
         return PlayerPedId();
     }
-    /**
-     * Définit le modèle du joueur
-     */
-    async setModel(modelHash) {
-        const playerId = this.getId();
-        SetPlayerModel(playerId, modelHash);
-        // Attente pour s'assurer que le modèle est appliqué
-        await new Promise((resolve) => setTimeout(resolve, 100));
-        return this.getPedId();
+    setModel(modelHash) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const playerId = this.getId();
+            SetPlayerModel(playerId, modelHash);
+            yield new Promise((resolve) => setTimeout(resolve, 100));
+            return this.getPedId();
+        });
     }
-    /**
-     * Définit le contrôle du joueur
-     */
     setControl(hasControl, flags = 0) {
         SetPlayerControl(this.getId(), hasControl, flags);
     }
-    /**
-     * Ressuscite le joueur à une position donnée
-     */
     resurrect(position, heading) {
         NetworkResurrectLocalPlayer(position.x, position.y, position.z, heading, this.getId(), false);
     }
-    /**
-     * Efface les tâches du joueur
-     */
     clearTasks() {
         ClearPedTasksImmediately(this.getPedId());
     }
-    /**
-     * Réinitialise la caméra du joueur
-     */
     resetCamera() {
         SetGameplayCamRelativeHeading(0);
     }
-    /**
-     * Configure l'apparence par défaut du ped
-     */
+    isFullyLoaded() {
+        return (NetworkIsPlayerActive(PlayerId()) &&
+            !IsScreenFadedOut() &&
+            !IsScreenFadingOut() &&
+            !IsScreenFadingIn() &&
+            !IsPlayerSwitchInProgress());
+    }
     setupDefaultAppearance() {
         SetPedDefaultComponentVariation(this.getPedId());
     }
 }
+//# sourceMappingURL=PlayerService.js.map
