@@ -1,3 +1,5 @@
+import './job-register';
+
 import { IPlayerService } from './services/PlayerService';
 import { client_services } from './services/ServiceContainer';
 import { ISpawnService } from './services/SpawnService';
@@ -16,11 +18,4 @@ on('onClientResourceStart', async (resourceName: string) => {
 
   // Spawn le joueur avec la configuration par défaut
   await spawnService.spawn();
-
-  SetNuiFocus(true, true);
-  SendNUIMessage({
-    action: 'OPEN',
-  });
-
-  console.log('onClientResourceStart: FINISHED');
 });

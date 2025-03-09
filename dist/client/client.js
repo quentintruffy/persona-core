@@ -16,7 +16,17 @@
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _services_ServiceContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./services/ServiceContainer */ \"./src/client/services/ServiceContainer.ts\");\nvar __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\non('onClientResourceStart', (resourceName) => __awaiter(void 0, void 0, void 0, function* () {\n    if (GetCurrentResourceName() !== resourceName) {\n        return;\n    }\n    console.log(`onClientResourceStart: ${resourceName}`);\n    const playerServer = _services_ServiceContainer__WEBPACK_IMPORTED_MODULE_0__.client_services.get('playerService');\n    if (!playerServer.isFullyLoaded())\n        return;\n    const spawnService = _services_ServiceContainer__WEBPACK_IMPORTED_MODULE_0__.client_services.get('spawnService');\n    yield spawnService.spawn();\n    SetNuiFocus(true, true);\n    SendNUIMessage({\n        action: 'OPEN',\n    });\n    console.log('onClientResourceStart: FINISHED');\n}));\n\n\n//# sourceURL=webpack://persona-core/./src/client/client.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _job_register__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./job-register */ \"./src/client/job-register.ts\");\n/* harmony import */ var _services_ServiceContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./services/ServiceContainer */ \"./src/client/services/ServiceContainer.ts\");\nvar __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\n\non('onClientResourceStart', (resourceName) => __awaiter(void 0, void 0, void 0, function* () {\n    if (GetCurrentResourceName() !== resourceName) {\n        return;\n    }\n    console.log(`onClientResourceStart: ${resourceName}`);\n    const playerServer = _services_ServiceContainer__WEBPACK_IMPORTED_MODULE_1__.client_services.get('playerService');\n    if (!playerServer.isFullyLoaded())\n        return;\n    const spawnService = _services_ServiceContainer__WEBPACK_IMPORTED_MODULE_1__.client_services.get('spawnService');\n    yield spawnService.spawn();\n}));\n\n\n//# sourceURL=webpack://persona-core/./src/client/client.ts?");
+
+/***/ }),
+
+/***/ "./src/client/job-register.ts":
+/*!************************************!*\
+  !*** ./src/client/job-register.ts ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _jobs_metrodriver_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../jobs/metrodriver/client */ \"./src/jobs/metrodriver/client.ts\");\n/* harmony import */ var _jobs_types_JobRegistry__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../jobs/types/JobRegistry */ \"./src/jobs/types/JobRegistry.ts\");\n\n\nconst registry = _jobs_types_JobRegistry__WEBPACK_IMPORTED_MODULE_1__.JobRegistry.instance;\nregistry.registerClientJob('metrodriver', _jobs_metrodriver_client__WEBPACK_IMPORTED_MODULE_0__.MetroDriverClient);\nregistry.initClientJobs();\n\n\n//# sourceURL=webpack://persona-core/./src/client/job-register.ts?");
 
 /***/ }),
 
@@ -77,6 +87,46 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   UIService: () => (/* binding */ UIService)\n/* harmony export */ });\nvar __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\nclass UIService {\n    fadeIn(duration) {\n        return __awaiter(this, void 0, void 0, function* () {\n            return new Promise((resolve) => {\n                DoScreenFadeIn(duration);\n                setTimeout(resolve, duration);\n            });\n        });\n    }\n    fadeOut(duration) {\n        return __awaiter(this, void 0, void 0, function* () {\n            return new Promise((resolve) => {\n                DoScreenFadeOut(duration);\n                setTimeout(resolve, duration);\n            });\n        });\n    }\n    hideLoadingScreens() {\n        ShutdownLoadingScreen();\n        ShutdownLoadingScreenNui();\n    }\n}\n\n\n//# sourceURL=webpack://persona-core/./src/client/services/UIService.ts?");
+
+/***/ }),
+
+/***/ "./src/jobs/metrodriver/client.ts":
+/*!****************************************!*\
+  !*** ./src/jobs/metrodriver/client.ts ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   MetroDriverClient: () => (/* binding */ MetroDriverClient)\n/* harmony export */ });\n/* harmony import */ var _types_AbstractJob__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../types/AbstractJob */ \"./src/jobs/types/AbstractJob.ts\");\n\nclass MetroDriverClient extends _types_AbstractJob__WEBPACK_IMPORTED_MODULE_0__.AbstractJob {\n    onInit() { }\n}\n\n\n//# sourceURL=webpack://persona-core/./src/jobs/metrodriver/client.ts?");
+
+/***/ }),
+
+/***/ "./src/jobs/types/AbstractJob.ts":
+/*!***************************************!*\
+  !*** ./src/jobs/types/AbstractJob.ts ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   AbstractJob: () => (/* binding */ AbstractJob)\n/* harmony export */ });\nclass AbstractJob {\n    constructor(name, side) {\n        this._manifest = null;\n        this.name = name;\n        this.side = side;\n    }\n    init() {\n        this.log(`Initialisation (${this.side})`);\n        this.onInit();\n    }\n    setManifest(manifest) {\n        this._manifest = manifest;\n    }\n    get manifest() {\n        return this._manifest;\n    }\n    log(message, ...args) {\n        console.log(`[Job:${this.name}:${this.side}] ${message}`, ...args);\n    }\n    error(message, ...args) {\n        console.error(`[Job:${this.name}:${this.side}] ERROR: ${message}`, ...args);\n    }\n}\n\n\n//# sourceURL=webpack://persona-core/./src/jobs/types/AbstractJob.ts?");
+
+/***/ }),
+
+/***/ "./src/jobs/types/IJob.ts":
+/*!********************************!*\
+  !*** ./src/jobs/types/IJob.ts ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   JobSide: () => (/* binding */ JobSide)\n/* harmony export */ });\nvar JobSide;\n(function (JobSide) {\n    JobSide[\"CLIENT\"] = \"client\";\n    JobSide[\"SERVER\"] = \"server\";\n    JobSide[\"SHARED\"] = \"shared\";\n})(JobSide || (JobSide = {}));\n\n\n//# sourceURL=webpack://persona-core/./src/jobs/types/IJob.ts?");
+
+/***/ }),
+
+/***/ "./src/jobs/types/JobRegistry.ts":
+/*!***************************************!*\
+  !*** ./src/jobs/types/JobRegistry.ts ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   JobRegistry: () => (/* binding */ JobRegistry)\n/* harmony export */ });\n/* harmony import */ var _IJob__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./IJob */ \"./src/jobs/types/IJob.ts\");\n\nclass JobRegistry {\n    constructor() {\n        this._clientJobs = new Map();\n        this._serverJobs = new Map();\n    }\n    static get instance() {\n        if (!JobRegistry._instance) {\n            JobRegistry._instance = new JobRegistry();\n        }\n        return JobRegistry._instance;\n    }\n    registerClientJob(name, jobClass) {\n        if (this._clientJobs.has(name)) {\n            console.warn(`Un job client avec le nom \"${name}\" existe déjà`);\n            return;\n        }\n        try {\n            const job = new jobClass(name, _IJob__WEBPACK_IMPORTED_MODULE_0__.JobSide.CLIENT);\n            this._clientJobs.set(name, job);\n            console.log(`Job client \"${name}\" enregistré avec succès`);\n        }\n        catch (error) {\n            console.error(`Erreur lors de l'enregistrement du job client \"${name}\":`, error);\n        }\n    }\n    registerServerJob(name, jobClass) {\n        if (this._serverJobs.has(name)) {\n            console.warn(`Un job serveur avec le nom \"${name}\" existe déjà`);\n            return;\n        }\n        try {\n            const job = new jobClass(name, _IJob__WEBPACK_IMPORTED_MODULE_0__.JobSide.SERVER);\n            this._serverJobs.set(name, job);\n            console.log(`Job serveur \"${name}\" enregistré avec succès`);\n        }\n        catch (error) {\n            console.error(`Erreur lors de l'enregistrement du job serveur \"${name}\":`, error);\n        }\n    }\n    initClientJobs() {\n        console.log(`Initialisation de ${this._clientJobs.size} jobs client...`);\n        for (const [name, job] of this._clientJobs) {\n            try {\n                job.init();\n            }\n            catch (error) {\n                console.error(`Erreur lors de l'initialisation du job client \"${name}\":`, error);\n            }\n        }\n    }\n    initServerJobs() {\n        console.log(`Initialisation de ${this._serverJobs.size} jobs serveur...`);\n        for (const [name, job] of this._serverJobs) {\n            try {\n                job.init();\n            }\n            catch (error) {\n                console.error(`Erreur lors de l'initialisation du job serveur \"${name}\":`, error);\n            }\n        }\n    }\n    getClientJob(name) {\n        return this._clientJobs.get(name);\n    }\n    getServerJob(name) {\n        return this._serverJobs.get(name);\n    }\n    get clientJobs() {\n        return this._clientJobs;\n    }\n    get serverJobs() {\n        return this._serverJobs;\n    }\n}\n\n\n//# sourceURL=webpack://persona-core/./src/jobs/types/JobRegistry.ts?");
 
 /***/ })
 
