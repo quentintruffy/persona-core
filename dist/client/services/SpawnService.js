@@ -3,6 +3,11 @@
  * Service de spawn du joueur utilisant les autres services
  */
 class SpawnService {
+    modelService;
+    entityService;
+    uiService;
+    playerService;
+    defaultConfig;
     constructor(modelService, entityService, uiService, playerService) {
         this.modelService = modelService;
         this.entityService = entityService;

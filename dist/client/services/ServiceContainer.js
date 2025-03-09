@@ -5,9 +5,7 @@ exports.client_services = void 0;
  * Conteneur simple pour l'injection de dépendances
  */
 class ServiceContainer {
-    constructor() {
-        this.services = new Map();
-    }
+    services = new Map();
     /**
      * Enregistre un service dans le conteneur
      */

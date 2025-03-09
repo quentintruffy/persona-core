@@ -1,17 +1,36 @@
+// {
+// 	"compilerOptions": {
+// 		"target": "ESNext",
+// 		"strict": true,
+// 		"esModuleInterop": true,
+// 		"allowSyntheticDefaultImports": true,
+// 		"resolveJsonModule": true,
+// 		"module": "CommonJS",
+// 		"outDir": "./dist",
+// 		"rootDir": "./src",
+// 		"skipLibCheck": true,
+// 		"lib": ["ES2020"],
+// 		"types": ["@citizenfx/client", "@citizenfx/server", "@types/node"]
+// 	},
+// 	"include": ["src/**/*.ts"],
+// 	"exclude": ["node_modules"]
+// }
+
 {
 	"compilerOptions": {
-		"target": "ES2020",
-		"strict": true,
+		"target": "es2016",
+		"module": "esnext",
+		"moduleResolution": "node",
 		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
-		"resolveJsonModule": true,
-		"module": "CommonJS",
+		"strict": true,
 		"outDir": "./dist",
 		"rootDir": "./src",
-		"skipLibCheck": true,
-		"lib": ["ES2020"],
+		"sourceMap": true,
+		"declaration": false,
+		"removeComments": true,
+		"noImplicitAny": true,
 		"types": ["@citizenfx/client", "@citizenfx/server", "@types/node"]
 	},
-	"include": ["src/**/*.ts"],
+	"include": ["src/**/*"],
 	"exclude": ["node_modules"]
 }

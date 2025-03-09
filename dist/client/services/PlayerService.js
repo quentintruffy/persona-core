@@ -3,6 +3,7 @@
  * Service pour la gestion du joueur
  */
 class PlayerService {
+    entityService;
     constructor(entityService) {
         this.entityService = entityService;
     }
