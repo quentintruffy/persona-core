@@ -18,10 +18,19 @@ const initializePlayer = async () => {
             throw new Error(`Model ${modelName} not in cdimage`);
         }
         RequestModel(modelHash);
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        // Wait for model to load properly
+        await new Promise((resolve) => {
+            const checkModel = setInterval(() => {
+                if (HasModelLoaded(modelHash)) {
+                    clearInterval(checkModel);
+                    resolve();
+                }
+            }, 100);
+        });
         const playerId = PlayerId();
         SetPlayerModel(playerId, modelHash);
-        await new Promise((resolve) => setTimeout(resolve, 0));
+        // Small delay to ensure player model is set
+        await new Promise((resolve) => setTimeout(resolve, 100));
         const ped = PlayerPedId();
         DoScreenFadeOut(0);
         ShutdownLoadingScreen();
@@ -31,7 +40,7 @@ const initializePlayer = async () => {
         SetEntityHeading(ped, spawnPos.heading);
         SetEntityVisible(ped, true, false);
         NetworkResurrectLocalPlayer(spawnPos.x, spawnPos.y, spawnPos.z, spawnPos.heading, playerId, true);
-        ClearPedTasksImmediately(PlayerPedId());
+        ClearPedTasksImmediately(ped);
         SetGameplayCamRelativeHeading(0);
         FreezeEntityPosition(ped, false);
         SetPlayerControl(playerId, true, 0);

@@ -13,19 +13,32 @@ const initializePlayer = async () => {
 	try {
 		const modelName = 'mp_m_freemode_01';
 		const modelHash = GetHashKey(modelName);
+
 		if (!modelHash) {
 			throw new Error(`Model ${modelName} not found`);
 		}
+
 		if (!IsModelInCdimage(modelHash)) {
 			throw new Error(`Model ${modelName} not in cdimage`);
 		}
+
 		RequestModel(modelHash);
-		await new Promise((resolve) => setTimeout(resolve, 500));
+
+		// Wait for model to load properly
+		await new Promise<void>((resolve) => {
+			const checkModel = setInterval(() => {
+				if (HasModelLoaded(modelHash)) {
+					clearInterval(checkModel);
+					resolve();
+				}
+			}, 100);
+		});
 
 		const playerId = PlayerId();
 		SetPlayerModel(playerId, modelHash);
 
-		await new Promise((resolve) => setTimeout(resolve, 0));
+		// Small delay to ensure player model is set
+		await new Promise((resolve) => setTimeout(resolve, 100));
 
 		const ped = PlayerPedId();
 
@@ -56,7 +69,7 @@ const initializePlayer = async () => {
 			playerId,
 			true
 		);
-		ClearPedTasksImmediately(PlayerPedId());
+		ClearPedTasksImmediately(ped);
 
 		SetGameplayCamRelativeHeading(0);
 		FreezeEntityPosition(ped, false);
