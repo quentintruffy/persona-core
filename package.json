@@ -4,7 +4,12 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"clean": "rm -rf dist",
+		"build:client": "tsc -p tsconfig.client.json",
+		"build:server": "tsc -p tsconfig.server.json",
+		"build:shared": "tsc -p tsconfig.shared.json",
+		"build": "npm run clean && npm run build:client && npm run build:server && npm run build:shared"
 	},
 	"repository": {
 		"type": "git",

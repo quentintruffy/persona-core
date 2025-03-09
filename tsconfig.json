@@ -6,8 +6,9 @@
 		"allowSyntheticDefaultImports": true,
 		"resolveJsonModule": true,
 		"module": "CommonJS",
-		"outDir": "dist",
-		"types": ["@citizenfx/client", "@citizenfx/server", "@types/node"],
+		"outDir": "./dist",
+		"rootDir": "./src",
+		"skipLibCheck": true,
 		"lib": ["ES2020"]
 	},
 	"include": ["src/**/*.ts"],

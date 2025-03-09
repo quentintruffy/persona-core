@@ -1,3 +1,6 @@
+/// <reference path="../../node_modules/@citizenfx/server/natives_server.d.ts" />
+/// <reference path="../../node_modules/@citizenfx/server/index.d.ts" />
+
 on(
 	'playerConnecting',
 	(name: string, setKickReason: (reason: string) => void, deferrals: any) => {
@@ -6,14 +9,10 @@ on(
 );
 
 on('playerDropped', (reason: string) => {
-	const playerId = global.source;
-	console.log(
-		`${GetPlayerName(playerId)} a quitté le serveur. Raison: ${reason}`
-	);
+	console.log(`a quitté le serveur. Raison: ${reason}`);
 });
 
 // Événement personnalisé pour détecter quand le joueur est complètement connecté
 onNet('playerEntered', () => {
-	const playerId = global.source;
-	console.log(`${GetPlayerName(playerId)} est connecté sur le serveur !`);
+	console.log(`est connecté sur le serveur !`);
 });
