@@ -1,36 +1,67 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from './assets/vite.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
-import './index.css';
+import PhoneI, { Phone } from './Phone';
 
 function App() {
-  const [count, setCount] = useState(0);
 
-  return (
-    <>
-      <div>
-        <a href='https://vite.dev' target='_blank'>
-          <img src={viteLogo} className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://react.dev' target='_blank'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
+  const [visible, setVisible] = useState(false);
+  const [phoneVisible, setPhoneVisible] = useState(false);
+
+  // const handleNuiCallback = (event: any) => {
+  //   console.log(event.data.action);
+  //   switch (event.data.action) {
+  //     case 'OPEN': {
+  //       setVisible(true);
+  //       break;
+  //     }
+  //     case 'phone:open': {
+  //       setPhoneVisible(true);
+  //       break;
+  //     }
+  //     case 'phone:close': {
+  //       setPhoneVisible(false);
+  //       break;
+  //     }
+  //   }
+  // };
+
+  // window.addEventListener('message', handleNuiCallback);
+
+  useEffect(() => {
+    const handleNuiCallback = (event) => {
+      console.log(event.data.action);
+      switch (event.data.action) {
+        case 'OPEN': {
+          setVisible(true);
+          break;
+        }
+        case 'phone:open': {
+          setPhoneVisible(true);
+          break;
+        }
+        case 'phone:close': {
+          setPhoneVisible(false);
+          break;
+        }
+      }
+    };
+
+    // Ajouter l'écouteur d'événement
+    window.addEventListener('message', handleNuiCallback);
+
+    // Nettoyer l'écouteur lors du démontage du composant
+    return () => {
+      window.removeEventListener('message', handleNuiCallback);
+    };
+  }, []); // Le tableau vide signifie que cet effet s'exécute une seule fois au montage
+
+
+  // if (phoneVisible) return <PhoneI />;
+  if (phoneVisible) return <Phone />;
+
+  if (!visible) return <></>;
+
+  return <></>;
 }
 
 export default App;

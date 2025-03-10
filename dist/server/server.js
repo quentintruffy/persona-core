@@ -20,6 +20,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/jobs/phone/server.ts":
+/*!**********************************!*\
+  !*** ./src/jobs/phone/server.ts ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   PhoneServer: () => (/* binding */ PhoneServer)\n/* harmony export */ });\n/* harmony import */ var _types_AbstractJob__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../types/AbstractJob */ \"./src/jobs/types/AbstractJob.ts\");\n\nclass PhoneServer extends _types_AbstractJob__WEBPACK_IMPORTED_MODULE_0__.AbstractJob {\n    onInit() { }\n}\n\n\n//# sourceURL=webpack://persona-core/./src/jobs/phone/server.ts?");
+
+/***/ }),
+
 /***/ "./src/jobs/types/AbstractJob.ts":
 /*!***************************************!*\
   !*** ./src/jobs/types/AbstractJob.ts ***!
@@ -56,7 +66,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _jobs_metrodriver_server__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../jobs/metrodriver/server */ \"./src/jobs/metrodriver/server.ts\");\n/* harmony import */ var _jobs_types_JobRegistry__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../jobs/types/JobRegistry */ \"./src/jobs/types/JobRegistry.ts\");\n\n\nconst registry = _jobs_types_JobRegistry__WEBPACK_IMPORTED_MODULE_1__.JobRegistry.instance;\nregistry.registerServerJob('metrodriver', _jobs_metrodriver_server__WEBPACK_IMPORTED_MODULE_0__.MetroDriverServer);\nregistry.initServerJobs();\n\n\n//# sourceURL=webpack://persona-core/./src/server/job-register.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _jobs_metrodriver_server__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../jobs/metrodriver/server */ \"./src/jobs/metrodriver/server.ts\");\n/* harmony import */ var _jobs_phone_server__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../jobs/phone/server */ \"./src/jobs/phone/server.ts\");\n/* harmony import */ var _jobs_types_JobRegistry__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../jobs/types/JobRegistry */ \"./src/jobs/types/JobRegistry.ts\");\n\n\n\nconst registry = _jobs_types_JobRegistry__WEBPACK_IMPORTED_MODULE_2__.JobRegistry.instance;\nregistry.registerServerJob('metrodriver', _jobs_metrodriver_server__WEBPACK_IMPORTED_MODULE_0__.MetroDriverServer);\nregistry.registerServerJob('phone', _jobs_phone_server__WEBPACK_IMPORTED_MODULE_1__.PhoneServer);\nregistry.initServerJobs();\n\n\n//# sourceURL=webpack://persona-core/./src/server/job-register.ts?");
 
 /***/ }),
 
